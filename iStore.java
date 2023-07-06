@@ -59,26 +59,5 @@ public class iStore implements Serializable {
         return users;
     }
 
-    // File handling methods
-    public void saveToFile(String fileName) {
-        try (FileOutputStream fileOutputStream = new FileOutputStream(fileName);
-             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
-            objectOutputStream.writeObject(this);
-            System.out.println("Data saved to file: " + fileName);
-        } catch (IOException e) {
-            System.out.println("Error occurred while saving data to file: " + e.getMessage());
-        }
-    }
 
-    public void loadFromFile(String fileName) {
-        try (FileInputStream fileInputStream = new FileInputStream(fileName);
-             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
-            iStore loadedStore = (iStore) objectInputStream.readObject();
-            this.products = loadedStore.products;
-            this.users = loadedStore.users;
-            System.out.println("Data loaded from file: " + fileName);
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Error occurred while loading data from file: " + e.getMessage());
-        }
-    }
 }
